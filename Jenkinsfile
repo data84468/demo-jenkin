@@ -12,7 +12,7 @@ pipeline {
                 echo '******* Deleting directory *******'
                 echo '******* GIT checkout *******'
 		cleanWs()
-		git branch: 'main',    
+		git branch: 'main'  
                 git 'https://github.com/data84468/demo-jenkin.git'
                 echo "******* Checkout complete*******"
             }
