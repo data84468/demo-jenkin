@@ -32,6 +32,38 @@
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
+                        <groupId>com.mulesoft.munit.tools</groupId>
+                        <artifactId>munit-maven-plugin</artifactId>
+                        <version>2.3.13</version>
+                        <executions>
+                              <execution>
+                                    <id>test</id>
+                                    <phase>test</phase>
+                                    <goals>
+                                          <goal>test</goal>
+                                          <goal>coverage-report</goal>
+                                    </goals>
+                              </execution>
+                        </executions>
+                        <configuration>
+							<runtimeVersion>4.6.1</runtimeVersion>
+                              <coverage>
+                                    <runCoverage>true</runCoverage>
+                                    <failBuild>true</failBuild>
+                              <requiredApplicationCoverage>80</requiredApplicationCoverage>
+                              
+                                 <requiredResourceCoverage>50</requiredResourceCoverage>
+                                    <requiredFlowCoverage>50</requiredFlowCoverage>
+                                    <formats>
+                                          <format>console</format>
+                                          <format>html</format>
+                                          <format>json</format>
+                                    </formats>
+                              </coverage>
+                        </configuration>
+                        
+                  </plugin>
+			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>4.1.1</version>
@@ -64,15 +96,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-		<repository>
-			<id>anypoint-exchange-v3</id>
-			<name>Corporate Repository</name>
-			<url>
-				https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
-			<layout>default</layout>
-		</repository>
-	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
@@ -84,6 +108,32 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.2</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-runner</artifactId>
+			<version>3.1.0</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-tools</artifactId>
+			<version>3.1.0</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.weave</groupId>
+			<artifactId>assertions</artifactId>
+			<version>1.2.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-validation-module</artifactId>
+			<version>2.0.6</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
